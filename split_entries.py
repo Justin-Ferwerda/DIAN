@@ -11,13 +11,17 @@ with open('devotions', 'r', encoding="utf8") as file:
         date_and_verse = to_json[0].split('\n', 1)
         date = date_and_verse[0]
         verse = date_and_verse[1]
+        verse_split = verse.split(':', 1)
+        formatted_verse = verse_split[1].replace('"', '').replace('\n', '')
+        content = to_json[1].replace('\n', '')
+
         fix = {
           "model": "DIANapi.devotion",
           "pk": i + 1,
           "fields": {
             "date": date,
-            "verse": verse,
-            "content": to_json[1],
+            "verse": formatted_verse,
+            "content": content,
           }
         }
 
