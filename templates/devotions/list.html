@@ -1,8 +1,13 @@
 {% extends "base/index.html" %}
 
 {% block content %}
-<button type="button" class="btn btn-success">Add Devotion</button>
+<form method="get">
+    <input type="text" name="q" placeholder="Search" value="{{ query }}">
+    <button type="submit">Search by Bible Book</button>
+</form>
 
+<button type="button" class="btn btn-success">Add Devotion</button>
+<p> {{total}} devotional bible verses contain {{query}} </p>
 <ol>
     {% for devotion in page_obj %}
     <li>
