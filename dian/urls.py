@@ -15,10 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from dianapi.views import devotion_view
 
 urlpatterns = [
-    path("devotions/", devotion_view, name="devotions"),
-    path("devotions/<int:devotion_id>", devotion_view, name="single_devotion"),
-    path("devotions/<int:devotion_id>/<str:is_edit>", devotion_view, name="editdevotion")
+    path('admin/', admin.site.urls)
 ]
