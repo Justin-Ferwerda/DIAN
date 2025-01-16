@@ -1,6 +1,10 @@
 from django.db import models
 
 class Devotion(models.Model):
-  date = models.DateField()
-  verse = models.CharField(max_length=10000)
-  content = models.CharField(max_length=10000)
+    date = models.DateField()
+    verse = models.TextField()
+    content = models.TextField()
+    
+    def __str__(self):
+        return str(self.date.strftime('%b. %-d'))
+    

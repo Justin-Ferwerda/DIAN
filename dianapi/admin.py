@@ -1,3 +1,8 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin
+from dianapi.models import Devotion
 
-# Register your models here.
+class DevotionAdmin(ModelAdmin):
+    pass
+
+admin.site.register(Devotion, DevotionAdmin)
