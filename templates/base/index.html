@@ -13,13 +13,13 @@
     <link rel="stylesheet" href="/css/main.css" />
     <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
   </head>
-  <body>
-    <div id="footer">
+  <body id="body">
+    <div id="header">
       {% block header %} {% include "base/header.html" %} {% endblock %}
     </div>
 
     <div id="main_content">
-      {% block content %}{% endblock %}
+      {% block content %}{% include "subscribe/subscribe_form.html" %} {% endblock %}
     </div>
 
     <div id="footer">

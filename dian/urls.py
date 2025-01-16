@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from dianapi.views import subscribe
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', subscribe, name='subscribe'),
+    path('', TemplateView.as_view(template_name="base/index.html"), name="home_page"),
+    path('subscribe/', subscribe, name='subscribe')
 ]
