@@ -1,1 +1,2 @@
-from .home_page_view import subscribe
+from .subscribe import subscribe
+from .home import home
