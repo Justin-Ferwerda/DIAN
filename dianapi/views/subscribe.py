@@ -3,7 +3,6 @@ from django.shortcuts import render
 from dianapi.models import Subscriber
 
 def subscribe(request):
-    print(request.method)
     if request.method == "POST":
         name = request.POST.get("name")
         email = request.POST.get("email")
