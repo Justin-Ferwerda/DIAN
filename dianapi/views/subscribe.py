@@ -1,6 +1,7 @@
 from django.db import IntegrityError
 from django.shortcuts import render
 from dianapi.models import Subscriber
+from utils import MailerLiteService
 
 def subscribe(request):
     if request.method == "POST":
@@ -11,6 +12,9 @@ def subscribe(request):
                 name=name,
                 email=email
             )
+            mailer = MailerLiteService()
+            subscriber = mailer.create_subscriber(email, name)
+            mailer.add_subscriber_to_group(subscriber)
             return render(request, "subscribe/subscribe_confirm.html", {
                 "name": name
             })
