@@ -17,7 +17,6 @@ def subscribe(request):
             name = first_name + ' ' + last_name
             mailer = MailerLiteService()
             mailer_lite_subscriber_object = mailer.create_subscriber(email, name)
-            print(mailer_lite_subscriber_object)
             subscriber.mailer_lite_id = mailer_lite_subscriber_object["data"]["id"]
             subscriber.save()
 

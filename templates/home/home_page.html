@@ -1,0 +1,15 @@
+{% extends "base/index.html" %}
+
+{% block content %}
+<div class="content">
+  <div>
+      <h5 class="motto">{{ verse }}</h5>
+      <p class="motto">{{ content }}</p>
+  </div>
+  <div class="subscribe_form">
+    {% block subscribe %}
+    {% include "subscribe/subscribe_form.html" %}
+    {% endblock %}
+  </div>
+</div>
+{% endblock %}

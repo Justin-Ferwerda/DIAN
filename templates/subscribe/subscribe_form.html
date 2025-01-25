@@ -1,34 +1,42 @@
 {% block subscribe %}
-<body>
-  <form hx-post="{% url 'subscribe' %}" hx-swap="outerHTML">
-    {% csrf_token %}
-    <div class="container">
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label class="sr-only" for="first_name">first_name</label>
-          <input type="text" class="form-control transparent" name="first_name" placeholder="First Name" required>
-        </div>
-        <div class="form-group col-md-6">
-          <label class="sr-only" for="last_name">last_name</label>
-          <input type="text" class="form-control transparent" name="last_name" placeholder="Last Name" required>
-        </div>
+<div class="subscribe">
+  <h5 class="info-text">
+      Subscribe to receive a daily devotional email!
+  </h5>
+  <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+        <body>
+          <form hx-post="{% url 'subscribe' %}" hx-swap="outerHTML">
+            {% csrf_token %}
+            <div class="container">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label class="sr-only" for="first_name">first_name</label>
+                  <input type="text" class="form-control transparent" name="first_name" placeholder="First Name" required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label class="sr-only" for="last_name">last_name</label>
+                  <input type="text" class="form-control transparent" name="last_name" placeholder="Last Name" required>
+                </div>
+              </div>
+            </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                  <input type="email" class="form-control transparent"  name="email" placeholder="Enter your email" required>
+                </div>
+              </div>
+                <button type="submit" class="btn btn-danger btn-fill">Subscribe!</button>
+              <div>
+                {% if error %}
+                <div class="info-text" role="alert">
+                  {{ error }}
+                </div>
+                {% endif %}
+              </div>
+          </form>
+        </body>
       </div>
-    </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label class="sr-only" for="exampleInputEmail2">Email address</label>
-          <input type="email" class="form-control transparent"  name="email" placeholder="Enter your email" required>
-        </div>
-      </div>
-        <button type="submit" class="btn btn-danger btn-fill">Subscribe!</button>
-      <div>
-        {% if error %}
-        <div class="info-text" role="alert">
-          {{ error }}
-        </div>
-        {% endif %}
-      </div>
-  </form>
-</body>
-</html>
+  </div>
+</div>
 {% endblock %}

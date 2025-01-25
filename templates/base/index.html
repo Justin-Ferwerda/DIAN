@@ -4,106 +4,38 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     
     <title>J.L. Rivera</title>
-    
+
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
 	<link href="{% static 'css/coming-sssoon.css' %}" rel="stylesheet" />    
-    
-    <!--     Fonts     -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
-  
 </head>
-
 <body>
-<nav class="navbar navbar-transparent navbar-fixed-top" role="navigation">  
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank"> 
-                    <i class="fa fa-facebook-square"></i>
-                    Share
-                </a>
-            </li>
-             <li>
-                <a href="mailto:?subject={{ subject|urlencode }}&body={{ body|urlencode }}"> 
-                    <i class="fa fa-envelope-o"></i>
-                    Email
-                </a>
-            </li>
-       </ul>
-       <ul class="nav navbar-nav navbar-left">
-          <li>
-              <a href="#"> 
-                  Archives
-              </a>
-          </li>
-          <li>
-              <a href="#"> 
-                  About Me
-              </a>
-          </li>
-          <li>
-            <a href="#"> 
-              My Book
-          </a>
-          </li>
-        </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container -->
-</nav>
+<div id="header">
+    {% block header %}
+    {% include "base/header.html" %}
+    {% endblock %}
+</div>
 <div class="main" style="background-image: url('{% static "images/devotional.jpg" %}')">
-
-
-<!--    Change the image source '/images/default.jpg' with your favourite image.     -->
-    
-    <div class="cover black" data-color="black"></div>
-     
+        <div class="cover black" data-color="black"></div>
 <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
-
     <div class="container">
         <h1 class="logo cursive">
             Devotions In A Nutshell
         </h1>
-<!--  H1 can have 2 designs: "logo" and "logo cursive"           -->
-        
         <div class="content">
-            <div>
-                <h5 class="motto">{{ verse }}</h5>
-                <p class="motto">{{ content }}</p>
-            </div>
-            <div class="subscribe">
-                <h5 class="info-text">
-                    Subscribe to receive a daily devotional email!
-                </h5>
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-                        {% block subscribe %}{% include 'subscribe/subscribe_form.html' %}{% endblock %}
-                    </div>
-                </div>
-            </div>
+            {% block content %}
+            {% endblock %}
         </div>
     </div>
     <div class="footer">
-      <div class="container">
-             Made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/Justin-Ferwerda">Mosaic Dev Lab</a>.
-      </div>
+      {% block footer %}
+      {% include "base/footer.html" %}
+      {% endblock %}
     </div>
  </div>
  </body>
