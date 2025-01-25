@@ -5,19 +5,26 @@ from utils import MailerLiteService
 
 def subscribe(request):
     if request.method == "POST":
-        name = request.POST.get("name")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
         email = request.POST.get("email")
         try:
-            Subscriber.objects.create(
-                name=name,
+            subscriber = Subscriber.objects.create(
+                first_name=first_name,
+                last_name=last_name,
                 email=email
             )
+            name = first_name + ' ' + last_name
             mailer = MailerLiteService()
-            subscriber = mailer.create_subscriber(email, name)
-            mailer.add_subscriber_to_group(subscriber)
+            mailer_lite_subscriber_object = mailer.create_subscriber(email, name)
+            print(mailer_lite_subscriber_object)
+            subscriber.mailer_lite_id = mailer_lite_subscriber_object["data"]["id"]
+            subscriber.save()
+
             return render(request, "subscribe/subscribe_confirm.html", {
                 "name": name
             })
+
         except IntegrityError:
             error = "Looks like you're already subscribed! Would you like to enter a different email?"
             return render(request, "subscribe/subscribe_form.html", {
