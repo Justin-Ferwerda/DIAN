@@ -20,6 +20,7 @@ def subscribe(request):
             return render(request, "subscribe/subscribe_confirm.html", {
                 "name": name
             })
+
         except IntegrityError:
             error = "Looks like you're already subscribed! Would you like to enter a different email?"
             return render(request, "subscribe/subscribe_form.html", {
