@@ -11,7 +11,7 @@ def home(request):
     )
     devotion = random.choice(devotions)
 
-    return render(request, "base/index.html", {
+    return render(request, "home/home_page.html", {
       "subject": "I thought you might like this",
       "body": "Body",
       "verse": devotion.verse,
