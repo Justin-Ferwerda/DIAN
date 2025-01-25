@@ -5,16 +5,20 @@ from utils import MailerLiteService
 
 def subscribe(request):
     if request.method == "POST":
-        name = request.POST.get("name")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
         email = request.POST.get("email")
         try:
             subscriber = Subscriber.objects.create(
-                name=name,
+                first_name=first_name,
+                last_name=last_name,
                 email=email
             )
+            name = first_name + ' ' + last_name
             mailer = MailerLiteService()
             mailer_lite_subscriber_object = mailer.create_subscriber(email, name)
-            subscriber.mailer_lite_id = mailer_lite_subscriber_object.data.id
+            print(mailer_lite_subscriber_object)
+            subscriber.mailer_lite_id = mailer_lite_subscriber_object["data"]["id"]
             subscriber.save()
 
             return render(request, "subscribe/subscribe_confirm.html", {
