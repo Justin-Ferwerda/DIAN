@@ -68,4 +68,12 @@
       {% endif %}
   </ul>
 </nav>
+<script>
+  document.addEventListener('htmx:afterSettle', function (event) {
+      if (event.target.id === 'devotions-list') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+  });
+</script>
+
 {% endblock %}
