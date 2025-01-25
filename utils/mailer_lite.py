@@ -2,6 +2,8 @@ import mailerlite as MailerLite
 from .get_env import get_env
 
 class MailerLiteService:
+    """Class to Interact with the Mailerlite sdk
+    """
 
     def __init__(self):
         self.env = get_env(__file__)
@@ -10,13 +12,17 @@ class MailerLiteService:
         })
 
     def create_subscriber(self, email, name):
+        """creates a subscriber and adds them to the group for daily devotions
+        Args:
+            email (string):
+            name (string):
+        Returns:
+            dict: the subscriber object from mailerlite
+        """
+        
         fields={
           'name': name
         }
-        subscriber = self.client.subscribers.create(email, fields=fields)
+        group_ids = [int(self.env("MAILER_LITE_GROUP_ID"))]
+        subscriber = self.client.subscribers.create(email, fields=fields, groups=group_ids)
         return subscriber
-
-    def add_subscriber_to_group(self, subscriber):
-        group_id = int(self.env("MAILER_LITE_GROUP_ID"))
-        subscriber_id  = int(subscriber["data"]["id"])
-        self.client.subscribers.assign_subscriber_to_group(subscriber_id=subscriber_id, group_id=group_id)

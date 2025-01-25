@@ -13,8 +13,7 @@ def subscribe(request):
                 email=email
             )
             mailer = MailerLiteService()
-            subscriber = mailer.create_subscriber(email, name)
-            mailer.add_subscriber_to_group(subscriber)
+            mailer.create_subscriber(email, name)
             return render(request, "subscribe/subscribe_confirm.html", {
                 "name": name
             })

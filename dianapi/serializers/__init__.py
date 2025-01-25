@@ -1,1 +1,2 @@
-from .serializers import DevotionSerializer
+from .devotion import DevotionSerializer
+from .subscriber import SubscriberSerializer
