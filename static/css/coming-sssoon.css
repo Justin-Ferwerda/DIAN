@@ -937,3 +937,9 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
     }
 
 }
+
+.custom-card {
+    margin-bottom: 20px; /* Adjust margin as needed */
+    border: 2px solid #f8f9fa; /* Border color (light gray here) */
+    padding: 15px;
+  }
