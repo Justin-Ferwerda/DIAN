@@ -8,12 +8,15 @@ def subscribe(request):
         name = request.POST.get("name")
         email = request.POST.get("email")
         try:
-            Subscriber.objects.create(
+            subscriber = Subscriber.objects.create(
                 name=name,
                 email=email
             )
             mailer = MailerLiteService()
-            mailer.create_subscriber(email, name)
+            mailer_lite_subscriber_object = mailer.create_subscriber(email, name)
+            subscriber.mailer_lite_id = mailer_lite_subscriber_object.data.id
+            subscriber.save()
+
             return render(request, "subscribe/subscribe_confirm.html", {
                 "name": name
             })

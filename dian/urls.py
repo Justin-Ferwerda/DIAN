@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from dianapi.views import subscribe, home
-from django.views.generic import TemplateView
+from dianapi.views import subscribe, home, SubscriberDeleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home_page"),
-    path('subscribe/', subscribe, name='subscribe')
+    path('subscribe/', subscribe, name='subscribe'),
+    path('unsubscribe/', SubscriberDeleteView.as_view(), name='unsubscribe')
 ]
