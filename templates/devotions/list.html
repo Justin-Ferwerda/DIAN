@@ -1,0 +1,13 @@
+{% extends "base/index.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4" style="color: white;">Daily Devotions</h1>
+
+    <div class="row">
+        <div id="devotions-list">
+        {% include "devotions/partial_list.html" %}
+        </div>
+    </div>  
+</div>
+{% endblock %}

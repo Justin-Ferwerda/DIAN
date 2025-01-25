@@ -1,0 +1,71 @@
+{% block paginator %}
+<nav>
+  <ul class="pagination justify-content-center">
+      {% if devotions.number > 1 %}
+      <li class="page-item">
+          <a class="page-link" href="?page=1"
+          hx-get="?page=1" 
+          hx-target="#devotions-list" 
+          hx-push-url="true"
+          >First</a>
+      </li>
+      {% endif %}
+      {% if devotions.has_previous %}
+      <li class="page-item">
+          <a class="page-link" href="?page={{ devotions.previous_page_number }}" aria-label="Previous"
+          hx-get="?page={{ devotions.previous_page_number }}" 
+          hx-target="#devotions-list" 
+          hx-push-url="true"
+          >
+              <span aria-hidden="true">&laquo;</span>
+          </a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+          <span class="page-link" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+          </span>
+      </li>
+      {% endif %}
+
+      {% for page_num in devotions.paginator.page_range %}
+          {% if page_num == devotions.number or page_num >= devotions.number|add:-2 and page_num <= devotions.number|add:2 %}
+          <li class="page-item {% if page_num == devotions.number %}active{% endif %}">
+              <a class="page-link" href="?page={{ page_num }}"
+              hx-get="?page={{ page_num }}" 
+              hx-target="#devotions-list" 
+              hx-push-url="true"
+              >{{ page_num }}</a>
+          </li>
+          {% endif %}
+      {% endfor %}
+
+      {% if devotions.has_next %}
+      <li class="page-item">
+          <a class="page-link" href="?page={{ devotions.next_page_number }}" aria-label="Next"
+          hx-get="?page={{ devotions.next_page_number }}" 
+          hx-target="#devotions-list" 
+          hx-push-url="true"
+          >
+              <span aria-hidden="true">&raquo;</span>
+          </a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+          <span class="page-link" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+          </span>
+      </li>
+      {% endif %}
+      {% if devotions.number < devotions.paginator.num_pages %}
+      <li class="page-item">
+          <a class="page-link" href="?page={{ devotions.paginator.num_pages }}"
+          hx-get="?page={{ devotions.paginator.num_pages }}" 
+          hx-target="#devotions-list" 
+          hx-push-url="true"
+          >Last</a>
+      </li>
+      {% endif %}
+  </ul>
+</nav>
+{% endblock %}

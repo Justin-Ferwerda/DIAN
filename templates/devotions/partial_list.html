@@ -1,0 +1,16 @@
+{% for devotion in devotions %}
+<div class="card custom-card">
+    <div class="card-header" style="color: white;">
+    {{ devotion.date }}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title" style="color: white;">{{ devotion.verse }}</h5>
+      <p class="card-text" style="color: white;">{{ devotion.content }}</p>
+    </div>
+  </div>
+  {% empty %}
+  <div class="col-12">
+    <p class="text-center">No devotions available at this time.</p>
+  </div>
+{% endfor %}
+{% block paginator %}{% include "devotions/paginator.html" %}{% endblock %}
