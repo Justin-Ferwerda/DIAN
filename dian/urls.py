@@ -19,7 +19,7 @@ from dianapi.views import subscribe, home, SubscriberDeleteView, devotion_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name="home_page"),
+    path('', home, name="home"),
     path('subscribe/', subscribe, name='subscribe'),
     path('unsubscribe/', SubscriberDeleteView.as_view(), name='unsubscribe'),
     path('devotions/', devotion_list, name='devotion_list')
